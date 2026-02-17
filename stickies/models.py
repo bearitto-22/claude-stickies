@@ -8,12 +8,12 @@ import time
 @dataclass
 class Note:
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
-    color: str = "yellow"
+    color: str = "purple"
     content: list = field(default_factory=list)  # Rich text runs
     width: int = 300
     height: int = 350
     always_on_top: bool = False
-    translucent: bool = False
+    translucent: bool = True
     created_at: float = field(default_factory=time.time)
 
     def to_dict(self) -> dict:

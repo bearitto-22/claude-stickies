@@ -1,13 +1,13 @@
 """Rich text formatting for TextBuffer."""
 
 import gi
+
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk, Pango
 
-
 # Default font settings
-DEFAULT_FONT_SIZE = 14
-DEFAULT_FONT_FAMILY = "Sans"
+DEFAULT_FONT_SIZE = 16
+DEFAULT_FONT_FAMILY = "Monospace"
 
 FONT_FAMILIES = ["Sans", "Serif", "Monospace", "Cantarell", "Ubuntu", "Noto Sans"]
 FONT_SIZES = [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 28, 32, 36, 48]
@@ -85,7 +85,9 @@ def apply_font_size(buffer: Gtk.TextBuffer, size: int, pending_tags: dict):
             buffer.emit("end-user-action")
     else:
         # Remove any pending size, set new one
-        pending_tags = {k: v for k, v in pending_tags.items() if not k.startswith("size-")}
+        pending_tags = {
+            k: v for k, v in pending_tags.items() if not k.startswith("size-")
+        }
         pending_tags[f"size-{size}"] = True
         return pending_tags
     return pending_tags
@@ -106,7 +108,9 @@ def apply_font_family(buffer: Gtk.TextBuffer, family: str, pending_tags: dict):
             buffer.apply_tag(tag, start, end)
             buffer.emit("end-user-action")
     else:
-        pending_tags = {k: v for k, v in pending_tags.items() if not k.startswith("family-")}
+        pending_tags = {
+            k: v for k, v in pending_tags.items() if not k.startswith("family-")
+        }
         pending_tags[f"family-{family}"] = True
         return pending_tags
     return pending_tags
@@ -124,13 +128,17 @@ def apply_text_color(buffer: Gtk.TextBuffer, hex_color: str, pending_tags: dict)
         buffer.apply_tag(tag, start, end)
         buffer.emit("end-user-action")
     else:
-        pending_tags = {k: v for k, v in pending_tags.items() if not k.startswith("color-")}
+        pending_tags = {
+            k: v for k, v in pending_tags.items() if not k.startswith("color-")
+        }
         pending_tags[f"color-{hex_color}"] = True
         return pending_tags
     return pending_tags
 
 
-def apply_pending_tags(buffer: Gtk.TextBuffer, pending_tags: dict, start_offset: int, end_offset: int):
+def apply_pending_tags(
+    buffer: Gtk.TextBuffer, pending_tags: dict, start_offset: int, end_offset: int
+):
     """Apply pending tags to a just-inserted text range."""
     if not pending_tags:
         return
@@ -166,7 +174,9 @@ def get_tags_at_iter(buffer: Gtk.TextBuffer, text_iter: Gtk.TextIter) -> dict:
     return result
 
 
-def _selection_has_tag(buffer: Gtk.TextBuffer, tag: Gtk.TextTag, start: Gtk.TextIter, end: Gtk.TextIter) -> bool:
+def _selection_has_tag(
+    buffer: Gtk.TextBuffer, tag: Gtk.TextTag, start: Gtk.TextIter, end: Gtk.TextIter
+) -> bool:
     """Check if the entire selection has a given tag."""
     it = start.copy()
     while it.compare(end) < 0:
@@ -177,15 +187,19 @@ def _selection_has_tag(buffer: Gtk.TextBuffer, tag: Gtk.TextTag, start: Gtk.Text
     return True
 
 
-def _remove_color_tags_in_range(buffer: Gtk.TextBuffer, start: Gtk.TextIter, end: Gtk.TextIter):
+def _remove_color_tags_in_range(
+    buffer: Gtk.TextBuffer, start: Gtk.TextIter, end: Gtk.TextIter
+):
     """Remove all color-* tags in a range."""
     tag_table = buffer.get_tag_table()
     # Collect color tags
     color_tags = []
+
     def _collect(tag):
         name = tag.get_property("name")
         if name and name.startswith("color-"):
             color_tags.append(tag)
+
     tag_table.foreach(_collect)
     for tag in color_tags:
         buffer.remove_tag(tag, start, end)
