@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Stickies
+Comment=Sticky notes for GNOME
+Exec=/usr/bin/python3 /home/bigb/Documents/CLI-stickies/claude-stickies/main.py
+Icon=com.claude.stickies
+Type=Application
+Categories=Utility;GTK;
+StartupWMClass=com.claude.stickies
