@@ -1,0 +1,15 @@
+This is claudes inital test for its Gnome project.
+
+Idea: Were going to make an app gor gnome, this app i want to be as direct of a clone as possible for the macos stickies. nice clean layout. font / text controlls, and intuitive layout with little or no help from me other
+than promting to claude.
+
+*this is the 2nd CLI in the list first was codex. last will be gemini*
+    ##Codex used python##
+    ill be interested to see what claude thinks is the best language for this project.
+
+    ##Setup: Linux CachyOS with GNOME DE using Wayland##
+
+*(AFTER BUILD)*
+Notes:
+CLAUDE IS AMAZING! yes i had to help it and probably gave it more attention than i did with codex but it was following directions
+much better and more efficently I loved this experience and working with the claude cli. Fast accurate and functional. What more can you ask for, all of my goals were reached and it works properly all feature were implemented it took some debugging and tweaking to get exactly what i had in my head but overall would do again might have a better inital promt to get a better inital start for the project will deffinatly be coming back to finialize this project this one will probably make its way into my daily use.
