@@ -46,7 +46,7 @@ PALETTE = {
     },
 }
 
-COLOR_ORDER = ["yellow", "blue", "pink", "green", "purple", "gray"]
+COLOR_ORDER = ["purple", "blue", "pink", "green", "yellow", "gray"]
 
 # Text colors available for rich text formatting
 TEXT_COLORS = [
